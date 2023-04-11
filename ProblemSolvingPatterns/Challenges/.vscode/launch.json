@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "http://countUniqueValues",
+      "request": "launch",
+      "url": "http://countUniqueValues"
+    }
+  ]
+}
