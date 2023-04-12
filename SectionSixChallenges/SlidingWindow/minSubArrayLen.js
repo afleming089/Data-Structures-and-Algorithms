@@ -60,12 +60,7 @@ const minSubArrayLength = (arr, num) => {
   let minLength = Infinity;
 
   // while right < arr.length to iterate through array
-  while (right < arr.length) {
-    // sum += arr[right] to add new values at all the different indexes
-    sum += arr[right];
-    // right++ to move right slider up in array
-    right++;
-
+  while (right <= arr.length) {
     // if arr[right] or arr[left] is more than num just return 1 since theres not going to be anything shorter
     if (num <= arr[left] || num <= arr[right]) return 1;
 
@@ -76,22 +71,14 @@ const minSubArrayLength = (arr, num) => {
       // if right - left is less than minLength minLength = right - left. This makes minLength smaller if a smaller array is found.
       if (right - left < minLength) minLength = right - left;
 
-      //   console.log("length " + (right - left) + " sum " + sum);
-      while (num <= sum) {
-        // if right - left is less than minLength minLength = right - left. This makes minLength smaller if a smaller array is found.
-        if (right - left < minLength) minLength = right - left;
-        sum -= arr[left];
+      sum -= arr[left];
 
-        // set left = right to start a new subArray
-        left++;
-      }
       // set left = right to start a new subArray
-      left = right;
-
-      // reset sum
-      sum = arr[left];
-
-      // right++ to move it up
+      left++;
+    } else {
+      // sum += arr[right] to add new values at all the different indexes
+      sum += arr[right];
+      // right++ to move right slider up in array
       right++;
     }
   }
@@ -100,10 +87,10 @@ const minSubArrayLength = (arr, num) => {
   return minLength;
 };
 
-// console.log(minSubArrayLength([2, 3, 1, 2, 4, 3], 7)); // 2 -> because [4,3] is the smallest subarray
-// console.log(minSubArrayLength([2, 1, 6, 5, 4], 9)); // 2 -> because [5,4] is the smallest subarray
-// console.log(minSubArrayLength([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52)); // 1 -> because [62] is greater than 52
-// console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 39)); // 3
-console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 55)); // 5
-// console.log(minSubArrayLength([4, 3, 3, 8, 1, 2, 3], 11)); // 2
-// console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 95)); // 0
+console.log(minSubArrayLength([2, 3, 1, 2, 4, 3], 7)); // 2 -> because [4,3] is the smallest subarray
+console.log(minSubArrayLength([2, 1, 6, 5, 4], 9)); // 2 -> because [5,4] is the smallest subarray
+console.log(minSubArrayLength([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52)); // 1 -> because [62] is greater than 52
+console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 39)); // 3
+console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 55)); // 5 [16, 22, 5, 7, 8]
+console.log(minSubArrayLength([4, 3, 3, 8, 1, 2, 3], 11)); // 2
+console.log(minSubArrayLength([1, 4, 16, 22, 5, 7, 8, 9, 10], 95)); // 0
