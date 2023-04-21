@@ -35,9 +35,8 @@ const power = (base, expo) => {
   if (expo === 0) return 1;
   // else
   // base will equal base * power(base, expo)
-  base = base * power(base, expo - 1);
+  return base * power(base, expo - 1);
   // return base here so function first in call stack has an output.
-  return base;
 };
 console.log(power(2, 0)); // 1
 console.log(power(2, 2)); // 4

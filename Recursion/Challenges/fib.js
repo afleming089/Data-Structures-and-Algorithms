@@ -31,7 +31,25 @@ Write a recursive function called fib which accepts a number and returns the nth
 
 // Break it Down
 
-const fib = (index) => {};
+const fib = (index) => {
+  // helper function to calculate the fib sequence
+  // count starts at 2 because the sequence adds the previous two numbers
+  const helper = (prev = 1, curr = 1, count = 3) => {
+    // fibNum = prev + curr
+    let fibNum = prev + curr;
+
+    // when count === index return the fibNum at that index
+    if (count === index) return fibNum;
+
+    // fibNum equals helper(curr, fibNum, count++)
+    fibNum = helper(curr, fibNum, (count += 1));
+    // return fibNum
+    return fibNum;
+  };
+
+  // return helper
+  return helper();
+};
 
 console.log(fib(4)); // 3
 console.log(fib(10)); // 55

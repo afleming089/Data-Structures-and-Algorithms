@@ -38,9 +38,8 @@ const factorial = (num) => {
   // base case when num = 0 return 1; This makes it so num is not subtracted forever.
   if (num === 0) return 1;
   // num equals the product of num times factorial(num - 1)
-  num = num * factorial(num - 1);
+  return num * factorial(num - 1);
   // return num for top of stack
-  return num;
 };
 
 console.log(factorial(1)); // 1
