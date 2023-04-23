@@ -32,13 +32,12 @@ Write a recursive function called isPalindrome which returns true if the string 
 // Break it down
 
 const isPalindrome = (str) => {
-  // base case. if str.length is 0 return ""
-  if (str.length === 0) return "";
-  let reverseStr = "";
-  // reverseStr = end of string + isPalindrome(str.substring(0, str.length))
-  reverseStr = str[str.length - 1] + isPalindrome(str.length - 2);
-  // if reverseStr = str return true else false
-  if (reverseStr === str) {
+  const reverse = (str) => {
+    if (str === "") return "";
+    return str[str.length - 1] + reverse(str.substring(0, str.length - 1));
+  };
+
+  if (str === reverse(str)) {
     return true;
   } else {
     return false;
@@ -46,7 +45,7 @@ const isPalindrome = (str) => {
 };
 
 console.log(isPalindrome("awesome")); // false
-// console.log(isPalindrome("foobar")); // false
-// console.log(isPalindrome("tacocat")); // true
-// console.log(isPalindrome("amanaplanacanalpanama")); // true
-// console.log(isPalindrome("amanaplanacanalpandemonium")); // false
+console.log(isPalindrome("foobar")); // false
+console.log(isPalindrome("tacocat")); // true
+console.log(isPalindrome("amanaplanacanalpanama")); // true
+console.log(isPalindrome("amanaplanacanalpandemonium")); // false
