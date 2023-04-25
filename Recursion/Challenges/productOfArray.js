@@ -22,14 +22,12 @@ Write a function called productOfArray which takes in an array of numbers and re
 const productOfArray = (arr) => {
   // when arr length = 0 return 1. This is the base case and will not change the product since it is multiplying by 1
   if (arr.length === 0) return 1;
+
   // create value called product set equal to 1
-  let product = 1;
   // multiply product by arr[0]
-  product *= arr[0];
   // set product equal to product times productOfArray(arr.slice(1))
-  product = product * productOfArray(arr.slice(1));
   // return product
-  return product;
+  return arr[0] * productOfArray(arr.slice(1));
 };
 console.log(productOfArray([1, 2, 3])); // 6
 console.log(productOfArray([1, 2, 3, 10])); // 60
