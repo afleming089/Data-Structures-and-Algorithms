@@ -38,10 +38,11 @@ const flatten = (arr) => {
 
   // if the element is a number
   if (typeof arr[0] === "number") {
-    // adds the first element in if it is a number and then concats the rest of the array on once the next number has been evaluated in flatten() once base case is met all chained element are satisfied and returned at this return statement.
+    // adds the first element in if it is a number and then concats the rest of the array on once base case is met. Then all chained element are satisfied and returned at this return statement.
     return arr.slice(0, 1).concat(flatten(arr.slice(1)));
   } else {
     // if the element is an array plug the entire index into flatten to evaluate and add its elements to the parent array. This is done because if the sub arrays first element is a number the if statement if(typeof arr[0] === number) will be true which will concat it into the chained value that will be returned by the first function call.
+    // if this condtional is false it will run this else condition again and pass another array in to be evaluated by if(typeof arr[0] === number). The arr.slice(1) moves up the index each time until the base case is satisfied.
     return flatten(arr[0]).concat(flatten(arr.slice(1)));
   }
 };
