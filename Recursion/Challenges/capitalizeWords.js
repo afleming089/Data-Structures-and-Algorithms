@@ -27,7 +27,11 @@ Write a recursive function called capitalizeWords. Given an array of words, retu
 // Break it down
 const capitalizedWords = (arr) => {
   // base case. If arr.length is zero return empty arr
+  if (arr.length === 0) return arr;
+  let strToUpper = "";
   // for loop for the length of arr[0]
+  for (let item of arr[0]) {
+  }
   // toUpper everything then at then of of the loop concat it to the rest of the array and call capitalizedWords again with arr.slice(1)
 };
 
