@@ -9,7 +9,7 @@ A array.
 Can outputs be found based on inputs?
 Yes. The output is just the input array but modified so that all the letters are capitalized.
 How should I label critical pieces of data?
-The input array is all we need for this problem. We will call it arr and output a modified version of it when the function returns. 
+The input array is all we need for this problem. We will call it arr and output a modified version of it when the function returns.
 */
 
 // Examples
@@ -28,12 +28,13 @@ Write a recursive function called capitalizeWords. Given an array of words, retu
 const capitalizedWords = (arr) => {
   // base case. If arr.length is zero return empty arr
   if (arr.length === 0) return arr;
-  let strToUpper = "";
-  // for loop for the length of arr[0]
-  for (let item of arr[0]) {
-  }
-  // toUpper everything then at then of of the loop concat it to the rest of the array and call capitalizedWords again with arr.slice(1)
+
+  // get first value and set it equal to the upper case version
+  const upperCase = [arr[0].toUpperCase()];
+
+  // concat to upperCase and recursively call capitalizeWorlds again to uppercase the next index.
+  return upperCase.concat(capitalizedWords(arr.slice(1)));
 };
 
 let words = ["i", "am", "learning", "recursion"];
-capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+console.log(capitalizedWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']
