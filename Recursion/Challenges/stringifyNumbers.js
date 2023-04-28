@@ -32,24 +32,34 @@ Write a function called stringifyNumbers which takes in an object and finds all 
 // Break it down
 
 function stringifyNumbers(obj) {
-  // this for loop will act as the base case. When it finished the obj is returned.
-  // have a for in loop to iterate through obj
-  for (let key in obj) {
-    // if number update key value to a toString version of the number
+  // base case if object is zero than all values have been evaluated
+  if (Object.keys(obj).length === 0) return obj;
+  // get the key and the key value of the objects first key from function object.keys()
+  const key = Object.keys(obj)[0];
+  let keyVal = obj[Object.keys(obj)[0]];
+  // deconstruct the object and remove the first item
+  const { [key]: removedItem, ...rest } = obj;
 
-    if (typeof obj[key] === "number") {
-      obj[key] = obj[key].toString();
-    }
-
-    // if a object plug that back into stringifyNumbers and have the key value set to equal that upon return. This will get all sub objects and add them on.
-
-    if (typeof obj[key] === "object") {
-      stringifyNumbers(obj[key]);
-    }
+  // if a number turn first item to a string and return it. Call stringifyNumbers again and plug in rest which holds the rest of the object to evaluate.
+  if (typeof keyVal === "number") {
+    return Object.assign(
+      {},
+      { [key]: keyVal.toString() },
+      stringifyNumbers(rest)
+    );
+  }
+  // if object do not convert to a string. Call the keyVal which holds the object in stringifyNums to evaluate on the object. Once that is complete the code will move on to the next function stringifyNums(rest) which will evaluate on the rest of the original obj
+  if (typeof keyVal === "object") {
+    return Object.assign(
+      {},
+      { [key]: stringifyNumbers(keyVal) },
+      stringifyNumbers(rest)
+    );
   }
 
-  // when for loop over return the updated input object.
-  return obj;
+  // if not a num or a object ex a bool just return a new obj with key and keyvalue plus what is returned from stringifyNums(rest)
+  if (typeof keyVal !== "number" || typeof keyVal !== "object")
+    return Object.assign({}, { [key]: keyVal }, stringifyNumbers(rest));
 }
 
 let obj = {
