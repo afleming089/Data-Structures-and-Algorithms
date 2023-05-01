@@ -6,7 +6,7 @@ function binarySearch(arr, val) {
     mid = Math.round((right + left) / 2);
     if (val === arr[mid]) return mid;
     if (val < arr[mid]) right = mid;
-    if (val > arr[mid]) left = mid;
+    else left = mid;
   }
   return -1;
 }
