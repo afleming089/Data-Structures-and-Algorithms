@@ -9,7 +9,7 @@ function bubbleSort(arr) {
         [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
       }
     }
-    if (sorted) break;
+    if (noSwaps) break;
   }
 
   return arr;
