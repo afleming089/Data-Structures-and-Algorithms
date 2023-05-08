@@ -1,23 +1,18 @@
 function insertionSort(arr) {
-  // sort first two values
-  if (arr[0] !== arr[1])
-    arr[0] < arr[1] ? ([arr[0], arr[1]] = [arr[1], arr[0]]) : null;
-  // for loop starts at index 2 since 0 and 1 are sorted
-  for (let i = 2; i < arr.length; i++) {
-    // declare index. starts at curr i
-    let index = i;
-    // while curr arr[index] is more than previous index index --
-    while (arr[index - 1] < arr[index]) {
-      index--;
+  // if (arr[1] < arr[0]) [arr[0], arr[1]] = [arr[1], arr[0]];
+  // for loop for iteration
+  for (let i = 0; i <= arr.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (arr[i] < arr[j]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        break;
+      }
     }
-    // when found insert arr[index] in between the previous and next item in the sorted section of the array.
-    // use slice 0, index -1 for the first half and slice index + 1, currI for the second half. Then concat them together.
-    console.log(arr[index]);
   }
   return arr;
 }
 
-console.log(insertionSort([34, 22, 10, 19, 17])); // [10, 17, 19, 22, 34]
+console.log(insertionSort([23, 22, 66, 10, 19, 17])); // [10, 17, 19, 22, 23,  66]
 
 // console.log(insertionSort([45, 6, 81, 2, 3, 46, 87, 69, 4]));
 // // returns [2,3,4,6,45,46,69,81,87]
