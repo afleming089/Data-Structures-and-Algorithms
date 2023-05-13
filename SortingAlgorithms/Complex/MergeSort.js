@@ -41,11 +41,10 @@ function sort(split) {
 
   let mergedArr = [];
 
+  // iterates by two so the same element is not put into merge twice
   for (let i = 0; i < split.length; i += 2) {
     // the array at i and the next array over at i + 1 are merged together
     mergedArr.push(merge(split[i], split[i + 1]));
-    // split remove one of the arrays so it is not endlessly added to merge
-    // split = split.slice(i + 1);
   }
 
   // empty's split to save memory
@@ -54,7 +53,7 @@ function sort(split) {
   return sort(mergedArr);
 }
 
-// splits an array down to single element arrays then runs sort which sort and once that is done returns the sorted array.
+// splits an array down to single element arrays then runs sort which is a recursive function that use merge to combine sorted arrays. Once that is done it returns the sorted array.
 function mergeSort(arr) {
   let split = [];
 
@@ -64,7 +63,6 @@ function mergeSort(arr) {
   }
 
   // returns the outcome of sort which is a recursive function that runs until all elements are in a single array.
-
   return sort(split);
 }
 
@@ -81,4 +79,4 @@ console.log(mergeSort([45, 4684, 47, 39, 465, 78564, 1]));
 // [1,39,45,47,465,4684,78564]
 
 console.log(mergeSort([5, 1, 2, 8, 46, 45, 2, 3, 4, 8]));
-// [1, 2, 2, 3, 4, 5, 8, 8, 45, 46]
+// [1,2,2,3,4,5,8,8,45,46]
