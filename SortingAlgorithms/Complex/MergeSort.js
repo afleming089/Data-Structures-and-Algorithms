@@ -2,7 +2,7 @@
 
 // used to merge two sorted arrays
 function merge(arr1, arr2) {
-  console.log(arr1, arr2);
+  // console.log(arr1, arr2);
 
   // if either are undefined just return the other. This is incase either 1 or 2 have no value.
   if (arr1 === undefined) return arr2;
@@ -38,6 +38,22 @@ function merge(arr1, arr2) {
   return mergeArr;
 }
 
+function sort(split) {
+  if (Array.isArray(split[1]) === false) return split[0];
+
+  let mergedArr = [];
+  // then plug into merge because single arrays are already sorted
+
+  for (let i = 0; i < split.length; i++) {
+    mergedArr.push(merge(split[i], split[i + 1]));
+    split = split.slice(i + 1);
+  }
+
+  // console.log(mergedArr);
+
+  return sort(mergedArr);
+}
+
 function mergeSort(arr) {
   // declare split as empty array
   let split = [];
@@ -46,25 +62,12 @@ function mergeSort(arr) {
     const elementArr = [arr[i]];
     split.push(elementArr);
   }
-  // hold merged elements from merge()
-  let mergedArr = [];
-
-  // then plug into merge because single arrays are already sorted
-
-  for (let i = 0; i < split.length; i++) {
-    console.log("i " + i);
-    mergedArr.push(merge(split[i], split[i + 1]));
-    console.log("---------------------");
-    // slice split each time so values are not repeated
-    split = split.slice(i + 1);
-    console.log("split");
-    console.log(split);
-  }
-
-  mergedArr.push(merge(split[0], split[1]));
 
   // return the sorted array
-  return mergedArr;
+  return sort(split);
 }
 
-console.log(mergeSort([1, 3, 4, 67, 46]));
+// console.log(mergeSort([1, 3, 4, 67, 46]));
+// console.log(mergeSort([8, 5, 7, 17, 0]));
+// console.log(mergeSort([90, 45, 64, 85, 2]));
+console.log(mergeSort([45, 4684, 47, 39, 465, 78564, 1]));
