@@ -4,7 +4,7 @@ function merge(arr1, arr2) {
   if (arr1 === undefined) return arr2;
   if (arr2 === undefined) return arr1;
 
-  let mergeArr = [];
+  let results = [];
 
   // used to iterate through both arrays
   let j = 0;
@@ -13,25 +13,25 @@ function merge(arr1, arr2) {
   // the array thats element at i or j index is less than the element at i or j index is pushed to mergeArr. Then which ever one was smaller is iterated on or 1 is added to the variable.
   while (i < arr1.length && j < arr2.length) {
     if (arr1[i] < arr2[j]) {
-      mergeArr.push(arr1[i]);
+      results.push(arr1[i]);
       i++;
     } else {
-      mergeArr.push(arr2[j]);
+      results.push(arr2[j]);
       j++;
     }
   }
 
   // if i is not already at its length push the rest of arr1 onto mergeArr
   for (i; i < arr1.length; i++) {
-    mergeArr.push(arr1[i]);
+    results.push(arr1[i]);
   }
 
   // same as the above for loop just for if there is anything left in arr2
   for (j; j < arr2.length; j++) {
-    mergeArr.push(arr2[j]);
+    results.push(arr2[j]);
   }
 
-  return mergeArr;
+  return results;
 }
 
 // takes an array of single element arrays and runs them through merge until they are all in a single sorted array
@@ -39,18 +39,18 @@ function sort(split) {
   // if the next value over from 0 is undefined that means all of the elements are sorted into a single array so they can be returned with split[0]
   if (split[1] === undefined) return split[0];
 
-  let mergedArr = [];
+  let merged = [];
 
   // iterates by two so the same element is not put into merge twice
   for (let i = 0; i < split.length; i += 2) {
     // the array at i and the next array over at i + 1 are merged together
-    mergedArr.push(merge(split[i], split[i + 1]));
+    merged.push(merge(split[i], split[i + 1]));
   }
 
   // empty's split to save memory
   split = [];
 
-  return sort(mergedArr);
+  return sort(merged);
 }
 
 // splits an array down to single element arrays then runs sort which is a recursive function that use merge to combine sorted arrays. Once that is done it returns the sorted array.
