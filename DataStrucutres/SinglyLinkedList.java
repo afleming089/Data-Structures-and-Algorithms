@@ -14,9 +14,9 @@ public class SinglyLinkedList {
     // Null is node
     // keeps track of head, tail, and length.
 
-    public static class Node {
-        String value;
-        Node next;
+    private static class Node {
+        protected String value;
+        protected Node next;
 
         Node() {
         }
@@ -25,33 +25,50 @@ public class SinglyLinkedList {
             this.value = value;
             next = new Node();
         }
-
-        @Override
-        public String toString() {
-            // TODO Auto-generated method stub
-            return value;
-        }
     }
 
     private Node head;
     private Node tail;
+    private Node placeholder;
     private int length;
 
     SinglyLinkedList(String head) {
+        // start of list
         this.head = new Node(head);
+        // next node and is inside head object. Is null
         tail = this.head.next;
-    }
-
-    void push(String value) {
-        tail.value = value;
-        tail.next = new Node("");
-        tail = tail.next;
+        // tail and place holder start out on the same object
+        placeholder = tail;
         length++;
     }
 
+    void push(String value) {
+        placeholder.value = value;
+        // tail is one up in the chain from placeholder.
+        // now that placeholder is not null we make tail the address of what placeholder
+        // was
+        tail = placeholder;
+        // new node in the chain
+        tail.next = new Node();
+        // set place holder to the new node making it null.
+        placeholder = tail.next;
+        length++;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return head.value + head.next.value + tail.value;
+        Node currentNode = head;
+        String linkedList = "";
+
+        for (int i = 0; i < length; i++) {
+            linkedList += currentNode.value;
+            currentNode = currentNode.next;
+        }
+        return linkedList;
     }
 
     public static void main(String[] args) {
